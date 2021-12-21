@@ -60,7 +60,8 @@ const App = () => {
             <DashboardLayout exact path={ROUTES.BLOGS} component={Blogs}/>
             <DashboardLayout exact path={ROUTES.NEWBLOG} component={NewBlog}/>
             <DashboardLayout path="/blogs/detail" component={BlogDetail} />
-            <Redirect from="*" to="/blogs/detail" />
+
+            <DashboardLayout path = '/blogs/detail/:id?' component={BlogDetail} />
 
           </Switch>
 
@@ -69,6 +70,7 @@ const App = () => {
 	)
 }
 
+// <Redirect from="*" to="/blogs/detail" />
 /*
             <Route exact path={ROUTES.LANDING} component={LandingPage}/>
             <Route exact path={ROUTES.PRICING} component={PricingPage}/>

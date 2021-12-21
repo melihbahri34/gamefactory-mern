@@ -43,13 +43,16 @@ const BlogCard = (props) => {
       localStorage.setItem("author", author);
       localStorage.setItem("authorImage", authorImage);
 
-      history.push(ROUTES.BLOG_DETAILED);
+      history.push(ROUTES.BLOG_DETAILED + '/' + title);
     }
 
     return(
         <div class="overflow-hidden shadow-lg rounded-lg h-90 w-60 md:w-80 cursor-pointer m-auto">
             <a onClick={redirectDetailed} class="w-full block h-full">
-                <img alt="blog photo" src={props.image} class="max-h-40 w-full object-cover"/>
+                <img 
+                    alt="blog photo" 
+                    src={props.image}
+                    class="max-h-40 w-full object-cover"/>
                 <div class="bg-white dark:bg-gray-800 w-full p-4">
                     <p class="text-indigo-500 text-md font-medium">
                     </p>

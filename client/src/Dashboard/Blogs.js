@@ -20,6 +20,7 @@ export default class Blogs extends Component {
             this.setState({render: true}) //After 1 second, set render to true
         }.bind(this), 1000)
 
+        /*
         axios.get('http://localhost:1337/blog-data/')
         .then(response => {
           this.setState({ blogs: response.data })
@@ -27,10 +28,19 @@ export default class Blogs extends Component {
         .catch((error) => {
           console.log(error);
         })
+        */
+
+        axios.get('http://localhost:1337/blogs/')
+			.then((res) => {
+				this.setState({ blogs: res.data })
+			})
+			.catch((err) => {
+				console.log(err);
+			});
     }
 
     render() {
-        const listItems = this.state.blogs.map((d) => <BlogCard title={d.blogTitle} subtitle={d.blogSubtitle} article={d.blogArticle} image={d.blogImage} date={d.blogDate} author={d.blogAuthor} authorImage={d.blogAuthorProfile}>
+        const listItems = this.state.blogs.map((d) => <BlogCard title={d.blogTitle} subtitle={d.blogSubtitle} article={d.blogArticle} image={`http://localhost:1337/images/${d.blogImage}`} date={d.blogDate} author={d.blogAuthor} authorImage={d.blogAuthorProfile}>
         </BlogCard>);
 
         return (     
@@ -62,7 +72,7 @@ export default class Blogs extends Component {
                             {listItems}    
                         </div>
                         : 
-                        <button type="button" class="bg-indigo-500 ..." disabled>
+                        <button type="button" class="" disabled>
                           <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
                           </svg>
                           Loading...
