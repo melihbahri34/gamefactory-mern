@@ -4,6 +4,7 @@ import React, { Component, useEffect, useState } from 'react';
 import UserCard from './Components/UserCard';
 import FeedCard from './Components/FeedCard';
 
+// get, post data & json
 import axios from 'axios';
 
 export default class Feeds extends Component {

@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react';
+
+// routing
 import { useHistory } from 'react-router-dom';
 
+// jwt for security
 import jwt from 'jsonwebtoken';
-
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  saveName,
-  saveEmail,
-  savePassword,
-  saveAbout
-} from '../reducers/authSlice';
 
 const Account = () => {
     const history = useHistory();
@@ -37,8 +32,6 @@ const Account = () => {
 
     const [location, setLocation] = useState('');
     const [tempLocation, setTempLocation] = useState('');
-
-    const dispatch = useDispatch();
 
 	async function populateProfile() {
 		const req = await fetch('http://localhost:1337/api/user', {
@@ -70,11 +63,6 @@ const Account = () => {
         setTempCurrentPosition(data.currentPosition);
         setTempAbout(data.about);
         setTempLocation(data.location);
-
-        dispatch(saveName(data.name));
-        dispatch(saveEmail(data.email));
-        dispatch(savePassword(data.password));
-        dispatch(saveAbout(data.about));
 
         localStorage.setItem("name", data.name);
         localStorage.setItem("email", data.email);
@@ -149,13 +137,6 @@ const Account = () => {
 		} else {
 			alert(data.error);
 		}
-
-        /*
-        dispatch(saveName(tempName));
-        dispatch(saveEmail(tempEmail));
-        dispatch(savePassword(tempPassword));
-        dispatch(saveAbout(tempAbout));
-        */
 	}
 
     return (

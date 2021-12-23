@@ -4,14 +4,6 @@ import { useHistory, generatePath, useRouteMatch } from 'react-router-dom';
 
 import * as ROUTES from '../../Constants/routes';
 
-import { useDispatch } from 'react-redux';
-import {
-    saveTitle,
-    saveSubtitle
-} from '../../reducers/blogSlice';
-
-// {generatePath(`${url}/:id`, { id })}
-
 const BlogCard = (props) => {
 
     let history = useHistory();
@@ -27,11 +19,7 @@ const BlogCard = (props) => {
     const author = props.author;
     const authorImage = props.authorImage;
 
-    const dispatch = useDispatch();
-
     const redirectDetailed = () => {
-      dispatch(saveTitle(title));
-      dispatch(saveSubtitle(subtitle));
 
       localStorage.setItem("title", title);
       localStorage.setItem("subtitle", subtitle);

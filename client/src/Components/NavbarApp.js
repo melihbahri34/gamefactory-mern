@@ -1,27 +1,18 @@
 import React from 'react';
 
+// routing
 import { useHistory } from 'react-router-dom';
-
 import * as ROUTES from '../Constants/routes';
-
-// redux
-import { useSelector } from 'react-redux';
-import {
-  selectName
-} from '../reducers/authSlice';
 
 const NavbarApp = () => {
     let history = useHistory();
-
     const redirectLogin = () => {
       history.push(ROUTES.LOGIN)
     }
-
     const redirectRegister = () => {
       history.push(ROUTES.REGISTER)
     }
 
-    // const name = useSelector(selectName);
     const name = localStorage.getItem('name');
 
     return (  

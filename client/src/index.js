@@ -3,12 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-import store from './app/store';
-import { Provider } from 'react-redux';
+// redux
+import { configureStore } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
+// reducer
+import userReducer from "./features/user";
+import blogReducer from "./features/blog";
+
+const store = configureStore({
+  reducer: {
+    user: userReducer,
+    blog: blogReducer
+  },
+});
 
 ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>,
     document.getElementById('root')
-  )
+)

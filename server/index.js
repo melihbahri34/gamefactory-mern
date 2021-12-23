@@ -5,13 +5,7 @@ const express = require('express');
 // mongo
 require('./db/db');
 
-// image
-const path = require('path');
-
 const app = express();
-
-// image
-require('dotenv').config();
 
 // cors
 const cors = require('cors');
@@ -19,6 +13,10 @@ app.use(cors());
 
 app.use(express.json());
 
+// image
+const path = require('path');
+// image
+require('dotenv').config();
 // image
 app.use('/images', express.static(path.join(__dirname, './images'))); // needed to display images from backend
 

@@ -1,82 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
-// new
+// get, post data & json
 import axios from 'axios';
 
-// old
-// import jwt from 'jsonwebtoken';
-// import { useHistory } from 'react-router-dom';
+// blog editor component
+import TextEditor from './Components/TextEditor';
+
+// redux
+import { useSelector } from "react-redux";
+import ReduxTest from './Components/ReduxTest';
 
 const NewBlog = () => {
-	/*
-	const history = useHistory();
-
-	const [blogTitle, setBlogTitle] = useState('');
-	const [tempBlogTitle, setTempBlogTitle] = useState('');
-
-	const [blogSubtitle, setBlogSubtitle] = useState('');
-	const [tempBlogSubtitle, setTempBlogSubtitle] = useState('');
-
-	const [blogArticle, setBlogArticle] = useState('');
-	const [tempBlogArticle, setTempBlogArticle] = useState('');
-
-	useEffect(() => {
-		const token = localStorage.getItem('token')
-		if (token) {
-			const user = jwt.decode(token)
-			if (!user) {
-				localStorage.removeItem('token')
-				history.replace('/login')
-			} else {
-				// populateQuote()
-			}
-		}
-	}, [])
-
-   	async function postBlog(event) {
-   		event.preventDefault();
-   
-		const current = new Date();
-
-		const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
-		const blogAuthor = localStorage.getItem("name");
-
-		const blogImage = "https://www.tailwind-kit.com/images/blog/1.jpg";
-		const blogAuthorProfile = "https://media-exp1.licdn.com/dms/image/C4D03AQEoQX3JEaGaiA/profile-displayphoto-shrink_800_800/0/1638460106201?e=1644451200&v=beta&t=pqCAzPEdFLK6ZFBYNqNZ0THIEYtxvvhAJ8wRGEIVogc";
-
-   		const req = await fetch('http://localhost:1337/api/blog-data', {
-   			method: 'POST',
-   			headers: {
-   				'Content-Type': 'application/json',
-   			},
-   			body: JSON.stringify({
-   				blogTitle: tempBlogTitle,
-				blogSubtitle: tempBlogSubtitle,
-				blogArticle: tempBlogArticle,
-				blogImage: blogImage,
-				blogDate: date,
-				blogAuthor: blogAuthor,
-				blogAuthorProfile: blogAuthorProfile,
-   			}),
-   		})
-   
-   		const data = await req.json()
-
-   		if (data.status === 'ok') {
-   			setBlogTitle(tempBlogTitle);
-   			setTempBlogTitle('');
-
-			setBlogSubtitle(tempBlogSubtitle);
-   			setTempBlogSubtitle('');
-
-			setBlogArticle(tempBlogArticle);
-			setTempBlogArticle('');
-   		} else {
-   			alert(data.error)
-   		}
-   	}
-	*/
-
 	const [blogs, setBlogs] = useState([]);
 	const [newBlog, setNewBlog] = useState({
 		blogTitle: '',
@@ -90,21 +24,13 @@ const NewBlog = () => {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 
-	/*
-	const getBlogs = () => {
-        setIsLoading(true);
-		axios.get('http://localhost:1337/blogs/')
-			.then((res) => {
-				setBlogs(res.data);
-                setIsLoading(false)
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
-	*/
+	const blog = useSelector((state) => state.blog.value);
+
+	const [textEditorValue, setTextEditorValue] = useState('');
 
 	const handleSubmit = (e) => {
+		const textEditor = localStorage.getItem("textEditor");
+
 		const blogAuthor = localStorage.getItem("name");
 		const blogAuthorProfile = "https://media-exp1.licdn.com/dms/image/C4D03AQEoQX3JEaGaiA/profile-displayphoto-shrink_800_800/0/1638460106201?e=1644451200&v=beta&t=pqCAzPEdFLK6ZFBYNqNZ0THIEYtxvvhAJ8wRGEIVogc";
 
@@ -115,7 +41,7 @@ const NewBlog = () => {
 		const formData = new FormData();
 		formData.append('blogTitle', newBlog.blogTitle);
 		formData.append('blogSubtitle', newBlog.blogSubtitle);
-		formData.append('blogArticle', newBlog.blogArticle);
+		formData.append('blogArticle', textEditor); // newBlog.blogArticle
 		formData.append('blogImage', newBlog.blogImage);
 		formData.append('blogDate', newBlog.blogDate);
 
@@ -140,6 +66,7 @@ const NewBlog = () => {
 
 	const handlePhoto = (e) => {
 		setNewBlog({ ...newBlog, blogImage: e.target.files[0] });
+		setTextEditorValue(localStorage.getItem("textEditor"));
 	};
 
 	useEffect(() => {
@@ -189,6 +116,14 @@ const NewBlog = () => {
 								placeholder="Blog Subtitle"/>
 						</div>
 
+						<TextEditor/>
+
+						<ReduxTest />
+
+						<div>
+							<p>{blog.textEditor}</p>
+						</div>
+
 						<div class="flex relative pt-6">
                            <span class="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
                                <svg width="15" height="15" fill="currentColor" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
@@ -222,20 +157,21 @@ const NewBlog = () => {
 
                     </div>
   
-  					<div class="flex w-full pt-6">
-  					    <div class="flex w-full">
-     						    <input 
-								    type="submit" 
-									value="Share" 
-									class="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                                </input>
-  						</div>
-                      </div>
+					<div class="flex w-full pt-6">
+					    <div class="flex w-full">
+						    <input 
+								type="submit" 
+								value="Share" 
+								class="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                            </input>
+						</div>
+                    </div>
+
                   </form>
               </div>
   		    </div>
         </div>
     )
 }
-    
+
 export default NewBlog;

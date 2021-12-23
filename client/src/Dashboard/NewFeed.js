@@ -1,28 +1,15 @@
 import React, { useEffect, useState } from 'react';
+
+// jwt for security
 import jwt from 'jsonwebtoken';
+
+// routing
 import { useHistory } from 'react-router-dom';
 
 const NewFeed = () => {
 	const history = useHistory()
 	const [feed, setFeed] = useState('')
 	const [tempFeed, setTempFeed] = useState('')
-
-    /*
-	async function populateQuote() {
-		const req = await fetch('http://localhost:1337/api/feed-data', {
-			headers: {
-				'x-access-token': localStorage.getItem('token'),
-			},
-		})
-
-		const data = await req.json()
-		if (data.status === 'ok') {
-			setFeed(data.feed)
-		} else {
-			alert(data.error)
-		}
-	}
-    */
 
 	useEffect(() => {
 		const token = localStorage.getItem('token')
@@ -31,8 +18,6 @@ const NewFeed = () => {
 			if (!user) {
 				localStorage.removeItem('token')
 				history.replace('/login')
-			} else {
-				// populateQuote()
 			}
 		}
 	}, [])

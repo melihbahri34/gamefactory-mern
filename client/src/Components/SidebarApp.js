@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
+
+// routing
 import * as ROUTES from '../Constants/routes';
 
+// icon
 import { FaPlusCircle } from "react-icons/fa";
-
-// redux
-import { useSelector } from 'react-redux';
-import {
-  selectName
-} from '../reducers/authSlice';
 
 export default function SidebarApp() {
     // const name = useSelector(selectName);

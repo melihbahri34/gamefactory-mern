@@ -3,6 +3,7 @@ import React, { Component, useEffect, useState } from 'react';
 // components
 import BlogCard from './Components/BlogCard';
 
+// get, post data & json
 import axios from 'axios';
 
 export default class Blogs extends Component {
@@ -19,16 +20,6 @@ export default class Blogs extends Component {
         setTimeout(function() { //Start the timer
             this.setState({render: true}) //After 1 second, set render to true
         }.bind(this), 1000)
-
-        /*
-        axios.get('http://localhost:1337/blog-data/')
-        .then(response => {
-          this.setState({ blogs: response.data })
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        */
 
         axios.get('http://localhost:1337/blogs/')
 			.then((res) => {
@@ -83,20 +74,3 @@ export default class Blogs extends Component {
         )
     }
 }
-
-/*
-Lastest articles
-All article are verified by 2 experts and valdiate by the CTO
-
-const [blogList, setCampaignList] = useState([
-        { id: 1, title: "Campaign1", subtitle: "Campaign Subtitle", image: "https://www.tailwind-kit.com/images/blog/1.jpg", author: "Melih Bahri", date: "14 Aralık" },
-        { id: 2, title: "Campaign2", subtitle: "Campaign Subtitle", image: "https://www.tailwind-kit.com/images/blog/1.jpg", author: "Melih Bahri", date: "14 Aralık" },
-        { id: 3, title: "Campaign3", subtitle: "Campaign Subtitle", image: "https://www.tailwind-kit.com/images/blog/1.jpg", author: "Melih Bahri", date: "14 Aralık" },
-        { id: 4, title: "Campaign4", subtitle: "Campaign Subtitle", image: "https://www.tailwind-kit.com/images/blog/1.jpg", author: "Melih Bahri", date: "14 Aralık" },
-        { id: 5, title: "Campaign5", subtitle: "Campaign Subtitle", image: "https://www.tailwind-kit.com/images/blog/1.jpg", author: "Melih Bahri", date: "14 Aralık" },
-        { id: 6, title: "Campaign6", subtitle: "Campaign Subtitle", image: "https://www.tailwind-kit.com/images/blog/1.jpg", author: "Melih Bahri", date: "14 Aralık" }
-    ]);
-
-    <BlogCard cardId={id} title={'Ogem'} subtitle={'İstanbul Oyun Geliştirme Merkezi Açıldı!'} image={'https://www.tailwind-kit.com/images/blog/1.jpg'} author={'Melih Bahri'} date={'14 Aralık'}/>
-
-*/

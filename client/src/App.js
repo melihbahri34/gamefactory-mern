@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 // navigation
 import { BrowserRouter as Router, Route, Switch, useLocation, HashRouter, Redirect } from 'react-router-dom';
@@ -36,7 +36,7 @@ import NewBlog from './Dashboard/NewBlog';
 
 const App = () => {
 	return (
-		<React.Fragment>
+      <React.Fragment>
         <Router>
           
           <NavbarApp/>
@@ -69,19 +69,5 @@ const App = () => {
       </React.Fragment>
 	)
 }
-
-// <Redirect from="*" to="/blogs/detail" />
-/*
-            <Route exact path={ROUTES.LANDING} component={LandingPage}/>
-            <Route exact path={ROUTES.PRICING} component={PricingPage}/>
-
-            <Route exact path={ROUTES.REGISTER} component={Register}/>
-            <Route exact path={ROUTES.LOGIN} component={Login}/>
-
-            <Route exact path={ROUTES.ACCOUNT} component={Account}/>
-
-            <Route exact path={ROUTES.DASHBOARD} component={Dashboard}/>
-            <Route exact path={ROUTES.QUOTE} component={Quote}/>
-*/
 
 export default App;

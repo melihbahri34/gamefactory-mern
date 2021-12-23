@@ -1,9 +1,9 @@
 import React, { Component, useEffect, useState } from 'react';
 
-
 // components
 import UserCard from './Components/UserCard';
 
+// get, post data & json
 import axios from 'axios';
 
 export default class Users extends Component {

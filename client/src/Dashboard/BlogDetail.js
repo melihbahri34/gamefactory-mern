@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
 
-import { useSelector } from 'react-redux';
-import {
-    selectTitle,
-    selectSubtitle
-} from '../reducers/blogSlice';
-
 function BlogDetail(props) {
-    // const title = useSelector(selectTitle);
-    // const subtitle = useSelector(selectSubtitle);
-
     const title = localStorage.getItem("title");
     const subtitle = localStorage.getItem("subtitle");
     const article = localStorage.getItem("article");
@@ -35,9 +26,9 @@ function BlogDetail(props) {
                         <p class="text-2xl font-light text-gray-400">
                             {subtitle}
                         </p>
-                        <p class="text-xl font-normal pt-4">
-                            {article}
-                        </p>
+
+                        <div dangerouslySetInnerHTML={{ __html: article }} />
+
                         <img class="pt-6" src={blogImage}></img>
                     </div>
                 </div>

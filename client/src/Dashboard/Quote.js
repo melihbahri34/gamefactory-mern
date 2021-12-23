@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
+
+// jwt for security
 import jwt from 'jsonwebtoken';
+
+// routing
 import { useHistory } from 'react-router-dom';
 
 const Dashboard = () => {
