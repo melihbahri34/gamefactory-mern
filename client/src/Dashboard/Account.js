@@ -34,7 +34,7 @@ const Account = () => {
     const [tempLocation, setTempLocation] = useState('');
 
 	async function populateProfile() {
-		const req = await fetch('http://localhost:1337/api/user', {
+		const req = await fetch('http://localhost:2002/api/user', {
 			headers: {
 				'x-access-token': localStorage.getItem('token'),
 			},
@@ -90,7 +90,7 @@ const Account = () => {
 	async function updateAccount(event) {
         event.preventDefault();
 
-		const req = await fetch('http://localhost:1337/api/user', {
+		const req = await fetch('http://localhost:2002/api/user', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

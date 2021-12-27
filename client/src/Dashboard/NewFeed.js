@@ -25,7 +25,7 @@ const NewFeed = () => {
    	async function postFeed(event) {
    		event.preventDefault()
    
-   		const req = await fetch('http://localhost:1337/api/feed-data', {
+   		const req = await fetch('http://localhost:2002/api/feed-data', {
    			method: 'POST',
    			headers: {
    				'Content-Type': 'application/json',

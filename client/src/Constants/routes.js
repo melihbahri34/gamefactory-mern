@@ -20,4 +20,4 @@ export const BLOG_DETAILED = '/blogs/detail';
 export const FILE = '/file';
 export const FILES = '/files-list';
 
-export const API_URL = 'http://localhost:1337';
+export const API_URL = 'http://localhost:2002';

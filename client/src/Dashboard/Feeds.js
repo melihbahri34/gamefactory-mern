@@ -17,7 +17,7 @@ export default class Feeds extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:1337/feed-data/')
+        axios.get('http://localhost:2002/feed-data/')
         .then(response => {
           this.setState({ feeds: response.data })
         })

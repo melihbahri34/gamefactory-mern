@@ -21,7 +21,7 @@ export default class Blogs extends Component {
             this.setState({render: true}) //After 1 second, set render to true
         }.bind(this), 1000)
 
-        axios.get('http://localhost:1337/blogs/')
+        axios.get('http://localhost:2002/blogs/')
 			.then((res) => {
 				this.setState({ blogs: res.data })
 			})
@@ -31,7 +31,7 @@ export default class Blogs extends Component {
     }
 
     render() {
-        const listItems = this.state.blogs.map((d) => <BlogCard title={d.blogTitle} subtitle={d.blogSubtitle} article={d.blogArticle} image={`http://localhost:1337/images/${d.blogImage}`} date={d.blogDate} author={d.blogAuthor} authorImage={d.blogAuthorProfile}>
+        const listItems = this.state.blogs.map((d) => <BlogCard title={d.blogTitle} subtitle={d.blogSubtitle} article={d.blogArticle} image={`http://localhost:2002/images/${d.blogImage}`} date={d.blogDate} author={d.blogAuthor} authorImage={d.blogAuthorProfile}>
         </BlogCard>);
 
         return (     

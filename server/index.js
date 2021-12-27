@@ -140,6 +140,6 @@ app.use(blogsRouter);
 */
 
 // listen
-app.listen(1337, () => {
-	console.log('Server started on port: 1337');
+app.listen(2002, () => {
+	console.log('Server started on port: 2002');
 })
